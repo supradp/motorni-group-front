@@ -1,0 +1,14 @@
+import React from "react";
+import "./main.scss";
+import BannerSlider from "../../components/sliders/BannerSlider.jsx";
+const Main = () => {
+    return (
+        <div className="main">
+            <div className="main__slider">
+                <BannerSlider />
+            </div>
+        </div>
+    );
+};
+
+export default Main;
