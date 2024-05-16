@@ -1,0 +1,46 @@
+.cooperation {
+    height: 100%;
+    display: flex;
+    &__sidebar {
+        padding: 42px 40px 50px 36px;
+        border-right: 1px solid #2c2c2c;
+        height: 100%;
+        &-title {
+            margin-top: 40px;
+            font-weight: 500;
+            font-size: 40px;
+        }
+        &-list {
+            margin-top: 72px;
+            width: 305px;
+        }
+    }
+
+    &__content {
+        padding: 44px 0px 50px 42px;
+        display: flex;
+        gap: 87px;
+        &-form {
+            &-title {
+                font-weight: 500;
+                font-size: 40px;
+                margin-bottom: 27px;
+            }
+            &-btn {
+                margin-top: 12px;
+            }
+        }
+        &-list {
+            &-title {
+                font-weight: 500;
+                font-size: 40px;
+                margin-bottom: 27px;
+            }
+            &-item {
+                font-weight: 400;
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}

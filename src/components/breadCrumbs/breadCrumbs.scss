@@ -1,0 +1,14 @@
+.bread-crumbs {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 122%;
+    color: var(--textGray);
+    &__link {
+        &-last {
+            color: var(--textGray10);
+        }
+    }
+}

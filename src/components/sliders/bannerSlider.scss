@@ -79,22 +79,39 @@
             }
         }
     }
-
-    // .swiper-container {
-    //     width: 100%;
-    //     height: 100%;
-    //     object-fit: cover;
-    //     object-position: center;
-    // }
 }
-@media (max-width: 850px) {
+@media (max-width: 1150px) {
     .banner-slider {
-        &__prev-arrow {
-            display: none;
+        &__bar {
+            height: 120px;
+            padding: 0px 44px;
+            &-title {
+                font-size: 35px;
+            }
+            &-btn {
+                gap: 15px;
+                &-title {
+                    font-size: 18px;
+                }
+            }
         }
-        &__next-arrow {
-            display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .banner-slider {
+        &__bar {
+            height: 120px;
+            padding: 0px 15px;
+            gap: 10px;
+            &-title {
+                font-size: 25px;
+            }
+            &-btn {
+                &-title {
+                    display: none;
+                }
+            }
         }
-        padding-bottom: 35px;
     }
 }

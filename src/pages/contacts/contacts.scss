@@ -1,0 +1,40 @@
+.contacts {
+    height: 100%;
+    display: flex;
+    // justify-content: space-between;
+    &__sidebar {
+        padding: 42px 40px 50px 36px;
+        border-right: 1px solid #2c2c2c;
+        height: 100%;
+        &-title {
+            margin-top: 40px;
+            font-weight: 500;
+            font-size: 40px;
+        }
+        &-form {
+            min-width: 422px;
+            margin-top: 30px;
+            &-btn {
+                margin-top: 12px;
+            }
+        }
+        &-list {
+            margin-top: 72px;
+            width: 305px;
+            // &-item {
+            //     font-weight: 400;
+            //     font-size: 20px;
+            //     margin-bottom: 10px;
+            // }
+        }
+    }
+    &__content {
+        min-width: 0;
+
+        padding: 44px 0px 50px 42px;
+
+        // width: auto;
+        // width: 100%;
+        // max-width: 932px;
+    }
+}

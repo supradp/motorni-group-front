@@ -1,0 +1,9 @@
+.form-input {
+    padding: 22px 30px;
+    border: 1px solid var(--textGray);
+    margin-top: 12px;
+    &__input {
+        font-weight: 400;
+        font-size: 20px;
+    }
+}

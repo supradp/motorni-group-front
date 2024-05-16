@@ -9,6 +9,63 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 46px;
+    &__menu {
+        display: none;
+        &-dropdown {
+            -webkit-box-shadow: 10px 10px 24px -8px rgba(0, 0, 0, 0.55);
+            -moz-box-shadow: 10px 10px 24px -8px rgba(0, 0, 0, 0.55);
+            box-shadow: 10px 10px 24px -8px rgba(0, 0, 0, 0.55);
+            position: absolute;
+            top: 100%;
+            transition: all 0.3s;
+            left: -100%;
+            width: 300px;
+            background: var(--white);
+            padding: 25px;
+            padding-bottom: 50px;
+            &-active {
+                left: 0;
+            }
+
+            &-links {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                &-logo {
+                    margin: 10px 0 30px 0;
+                }
+                &-divider {
+                    height: 1px;
+                    width: 100%;
+                    background: var(--textGray);
+                    margin: 10px 0;
+                }
+                &-item {
+                    font-weight: 400;
+                    font-size: 20px;
+                    &-buy {
+                        font-weight: 500;
+                    }
+                    &-vac {
+                        border: 2px solid var(--primary);
+                        border-radius: 96px;
+                        padding: 12px 16px;
+                        font-weight: 700;
+                        font-size: 14px;
+                        text-align: center;
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+    }
+    &__green {
+        background: var(--primary);
+        position: relative;
+        .header__border {
+            display: none;
+        }
+    }
     &__logo {
         margin-right: 104px;
     }
@@ -41,6 +98,11 @@
                 font-size: 20px;
                 color: var(--primary);
             }
+            &-white {
+                font-weight: 600;
+                font-size: 20px;
+            }
+
             &-extra {
                 border: 2px solid var(--primary);
                 border-radius: 96px;
@@ -50,6 +112,41 @@
                 text-align: center;
                 color: var(--white);
             }
+            &-green {
+                border: 2px solid var(--white);
+                border-radius: 96px;
+                padding: 12px 16px;
+                font-weight: 700;
+                font-size: 14px;
+                text-align: center;
+                color: var(--white);
+            }
+        }
+    }
+}
+
+@media (max-width: 1422px) {
+    .header {
+        &__logo {
+            margin-right: 30px;
+        }
+        &__nav {
+            gap: 20px;
+        }
+    }
+}
+
+@media (max-width: 1126px) {
+    .header {
+        padding: 0 15px;
+        &__logo {
+            margin-right: 0px;
+        }
+        &__menu {
+            display: block;
+        }
+        &__nav {
+            display: none;
         }
     }
 }

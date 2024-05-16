@@ -1,0 +1,27 @@
+.vacancy-item {
+    &__title {
+        font-weight: 600;
+        font-size: 36px;
+    }
+    &__desc {
+        display: flex;
+        gap: 18px;
+        margin-top: 7px;
+        padding-right: 37px;
+        &-txt {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 122%;
+        }
+        &-salary {
+            white-space: nowrap;
+            margin-top: auto;
+            font-weight: 600;
+            font-size: 36px;
+        }
+    }
+
+    border-bottom: 1px solid #2c2c2c;
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+}

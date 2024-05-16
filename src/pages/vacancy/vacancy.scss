@@ -1,0 +1,29 @@
+.vacancy {
+    height: 100%;
+    display: flex;
+    &__sidebar {
+        padding: 42px 40px 50px 36px;
+        border-right: 1px solid #2c2c2c;
+        // width: 383px;
+        // min-width: 383px;
+
+        height: 100%;
+        &-title {
+            margin-top: 40px;
+            font-weight: 500;
+            font-size: 40px;
+        }
+        &-list {
+            margin-top: 72px;
+            width: 305px;
+            &-item {
+                font-weight: 400;
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+    &__content {
+        padding: 44px 0px 50px 42px;
+    }
+}

@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import bannerImg from "../../assets/images/slider/banner.png";
 import arrowIcon from "../../assets/images/icons/arrow.svg";
+import MainBanner from "./slides/mainBanner/MainBanner";
 
 const list = [
     { id: 1, title: "Нашi напрямки" },
@@ -60,9 +61,13 @@ const BannerSlider = () => {
                     {list.map((slide) => {
                         return (
                             <SwiperSlide key={slide.id}>
-                                <div className="slide">
-                                    <img src={bannerImg} className="slide-img" />
-                                </div>
+                                {slide.id === 1 ? (
+                                    <MainBanner />
+                                ) : (
+                                    <div className="slide">
+                                        <img src={bannerImg} className="slide-img" />
+                                    </div>
+                                )}
                             </SwiperSlide>
                         );
                     })}
