@@ -1,5 +1,6 @@
 .bread-crumbs {
     display: flex;
+    flex-wrap: wrap;
     gap: 5px;
     align-items: center;
     font-weight: 400;
@@ -10,5 +11,11 @@
         &-last {
             color: var(--textGray10);
         }
+    }
+}
+
+@media (max-width: 800px) {
+    .bread-crumbs {
+        font-size: 18px;
     }
 }

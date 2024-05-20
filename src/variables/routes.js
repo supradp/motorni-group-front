@@ -6,4 +6,6 @@ export default {
     COOPERATION: "/cooperation",
     NEWS: "/news",
     CURRENTNEWS: "/news/:id",
+    DIRECTIONS: "directions/:id",
+    DIRECTIONSLINK: "directions/",
 };

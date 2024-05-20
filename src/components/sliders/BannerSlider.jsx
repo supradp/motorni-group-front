@@ -6,18 +6,29 @@ import React, { useCallback, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import bannerImg from "../../assets/images/slider/banner.png";
+import bannerImg2 from "../../assets/images/slider/banner-2.png";
+import bannerImg3 from "../../assets/images/slider/banner-3.png";
+import bannerImg4 from "../../assets/images/slider/banner-4.png";
 import arrowIcon from "../../assets/images/icons/arrow.svg";
 import MainBanner from "./slides/mainBanner/MainBanner";
+import routes from "../../variables/routes";
+import { Link } from "react-router-dom";
+import BrandIcon from "../../assets/images/icons/brand-cent.png";
+import { useGetPageQuery } from "../../redux/services/motorniAPI";
 
 const list = [
     { id: 1, title: "Нашi напрямки" },
-    { id: 2, title: "Сільгосптехніка" },
-    { id: 3, title: "Iнструмент та технiка" },
-    { id: 4, title: "Електромобiлi" },
-    { id: 5, title: "Вело-мото технiка" },
+    { id: 2, title: "Сільгосптехніка", link: routes.DIRECTIONSLINK + "1", img: bannerImg },
+    { id: 3, title: "Iнструмент та технiка", link: routes.DIRECTIONSLINK + "1", img: bannerImg2 },
+    { id: 4, title: "Електромобiлi", link: routes.DIRECTIONSLINK + "1", img: bannerImg3 },
+    { id: 5, title: "Вело-мото технiка", link: routes.DIRECTIONSLINK + "1", img: bannerImg4 },
 ];
 
 const BannerSlider = () => {
+    const { data: brands } = useGetPageQuery("brands");
+
+    console.log(brands);
+
     const sliderRef = useRef(null);
 
     const [activeIndex, setActiveIndex] = useState(0);
@@ -64,9 +75,20 @@ const BannerSlider = () => {
                                 {slide.id === 1 ? (
                                     <MainBanner />
                                 ) : (
-                                    <div className="slide">
-                                        <img src={bannerImg} className="slide-img" />
-                                    </div>
+                                    <Link to={slide.link} className="slide">
+                                        <div className="slide__brands">
+                                            <Link to={""} className="slide__brands-item">
+                                                <img src={BrandIcon} alt="" className="slide__brands-item-img" />
+                                            </Link>
+                                            <Link to={""} className="slide__brands-item">
+                                                <img src={BrandIcon} alt="" className="slide__brands-item-img" />
+                                            </Link>
+                                            <Link to={""} className="slide__brands-item">
+                                                <img src={BrandIcon} alt="" className="slide__brands-item-img" />
+                                            </Link>
+                                        </div>
+                                        <img src={slide.img} className="slide-img" />
+                                    </Link>
                                 )}
                             </SwiperSlide>
                         );
@@ -82,7 +104,9 @@ const BannerSlider = () => {
                             {list[getPrevIndexSlideHandler(activeIndex)]?.title}
                         </div>
                     </div>
-                    <div className="banner-slider__bar-title">{list[activeIndex]?.title}</div>
+                    <Link to={list[activeIndex]?.link} className="banner-slider__bar-title">
+                        {list[activeIndex]?.title}
+                    </Link>
                     <div className="banner-slider__bar-btn btn-animation" onClick={handleNext}>
                         <div className="banner-slider__bar-btn-title">
                             {list[getNextIndexSlideHandler(activeIndex)]?.title}

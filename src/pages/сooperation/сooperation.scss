@@ -44,3 +44,57 @@
         }
     }
 }
+
+@media (max-width: 1000px) {
+    .cooperation {
+        flex-wrap: wrap;
+        gap: 20px;
+        &__sidebar {
+            border: none;
+            height: auto;
+            padding: 20px 0px 20px 0px;
+            &-title {
+                margin-top: 30px;
+                font-weight: 500;
+                font-size: 30px;
+            }
+            &-list {
+                margin-top: 32px;
+                width: auto;
+            }
+        }
+        &__content {
+            // justify-content: center;
+            min-width: 0;
+            padding: 0px 0px 20px 0px;
+            &-form {
+                width: 100%;
+                &-title {
+                    font-size: 30px;
+                    margin-bottom: 20px;
+                }
+            }
+            &-list {
+                &-title {
+                    font-size: 30px;
+                    margin-bottom: 20px;
+                }
+                &-item {
+                    font-weight: 400;
+                    font-size: 20px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 870px) {
+    .cooperation {
+        &__content {
+            flex-wrap: wrap;
+            gap: 30px;
+            min-width: 0;
+            // padding: 0px 15px 20px 15px;
+        }
+    }
+}

@@ -51,12 +51,16 @@ const AboutUs = () => {
                 </div>
                 <div className="about-us__content">
                     {/* slide 1 */}
-                    {/* <ContentSlider slides={slides} isVertical={true} style={{ height: "450px" }}>
-                        <Slide text={"Моторні на ринку України вже більше 25 років. Ми змінювались, трансформувались та зростали. Наразі ми маємо три напрямки діяльності, широку сітку дилерів та сервісних центрів, а також потужну та злагоджену команду! Однак ми не зупиняємось на досягнутому та рухаємось вперед."} />
-                    </ContentSlider> */}
+                    <ContentSlider slides={slides} isVertical={true} style={{ height: "450px" }}>
+                        <Slide
+                            text={
+                                "Моторні на ринку України вже більше 25 років. Ми змінювались, трансформувались та зростали. Наразі ми маємо три напрямки діяльності, широку сітку дилерів та сервісних центрів, а також потужну та злагоджену команду! Однак ми не зупиняємось на досягнутому та рухаємось вперед."
+                            }
+                        />
+                    </ContentSlider>
 
                     {/* slide2 */}
-                    <ContentSlider slides={slides} isVertical={false} style={{ height: "max-content" }}>
+                    {/* <ContentSlider slides={slides} isVertical={false} style={{ height: "max-content" }}>
                         <DirectionsSlide
                             brands={brandsList}
                             title={
@@ -64,7 +68,7 @@ const AboutUs = () => {
                             }
                         />
                     </ContentSlider>
-                    <BrandSlider />
+                    <BrandSlider /> */}
                 </div>
             </div>
         </div>

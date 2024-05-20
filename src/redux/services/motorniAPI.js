@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const baseUrl =
-    !process.env.NODE_ENV || process.env.NODE_ENV === "development" ? `https://booking.inshi-apartments.com/` : `/`;
+export const baseUrl = !process.env.NODE_ENV || process.env.NODE_ENV === "development" ? `http://motorni.sv/` : `/`;
 
 export const onQueryStartedErrorToast = async (args, { queryFulfilled }) => {
     try {

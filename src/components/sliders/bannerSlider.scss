@@ -10,6 +10,20 @@
 
             object-fit: cover;
         }
+        &__brands {
+            position: absolute;
+            top: 118px;
+            left: 45px;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            &-item {
+                transition: all 0.3s;
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
     }
     &__custom-pagination {
         display: flex;
@@ -100,6 +114,11 @@
 
 @media (max-width: 800px) {
     .banner-slider {
+        .slide {
+            &__brands {
+                left: 25px;
+            }
+        }
         &__bar {
             height: 120px;
             padding: 0px 15px;

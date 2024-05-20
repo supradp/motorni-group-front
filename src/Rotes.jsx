@@ -9,6 +9,7 @@ import Contacts from "./pages/contacts/Contacts.jsx";
 import Cooperation from "./pages/сooperation/Cooperation.jsx";
 import News from "./pages/news/News.jsx";
 import CurrentNews from "./pages/currentNews/CurrentNews.jsx";
+import Directions from "./pages/directions/Directions.jsx";
 
 const Rotes = () => {
     return (
@@ -21,6 +22,8 @@ const Rotes = () => {
             <Route exact path={routes.COOPERATION} element={<Cooperation />} />
             <Route exact path={routes.NEWS} element={<News />} />
             <Route exact path={routes.CURRENTNEWS} element={<CurrentNews />} />
+            <Route exact path={routes.CURRENTNEWS} element={<CurrentNews />} />
+            <Route exact path={routes.DIRECTIONS} element={<Directions />} />
         </Routes>
     );
 };

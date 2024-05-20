@@ -34,3 +34,34 @@
         }
     }
 }
+
+@media (max-width: 1200px) {
+    .current-news {
+        padding: 26px 0 47px 0;
+        &__title {
+            font-size: 30px;
+            color: var(--textBlack);
+        }
+        &__content {
+            margin-top: 35px;
+            flex-wrap: wrap;
+            gap: 30px;
+            &-img {
+                min-width: 300px;
+                width: 100%;
+                object-fit: cover;
+            }
+            &-text {
+                color: var(--textBlack);
+
+                &-title {
+                    font-size: 30px;
+                }
+                &-txt {
+                    font-size: 18px;
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+}

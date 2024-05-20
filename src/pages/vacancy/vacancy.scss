@@ -27,3 +27,24 @@
         padding: 44px 0px 50px 42px;
     }
 }
+
+@media (max-width: 1000px) {
+    .vacancy {
+        flex-wrap: wrap;
+        gap: 20px;
+        &__sidebar {
+            border: none;
+            height: auto;
+            width: 100%;
+            padding: 20px 0px 20px 0px;
+            &-title {
+                margin-top: 30px;
+                font-weight: 500;
+                font-size: 30px;
+            }
+        }
+        &__content {
+            padding: 0px 0px 20px 0px;
+        }
+    }
+}

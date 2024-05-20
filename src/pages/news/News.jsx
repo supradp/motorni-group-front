@@ -9,6 +9,7 @@ import NewsSlider from "../../components/sliders/newsSlider/NewsSlider";
 import NewsSlideImg from "../../assets/images/slider/news-slide.png";
 import { Link } from "react-router-dom";
 import ContentSlider from "../../components/contentSlider/ContentSlider";
+import useWindowDimensions from "../../helpers/useWindowDimensions";
 
 const list = [
     { id: 1, title: "Стати дилером" },
@@ -36,6 +37,8 @@ const slides = [
 ];
 
 const News = () => {
+    const { width } = useWindowDimensions();
+
     const breadCrumbsLinks = [{ title: "Новини", route: routes.NEWS }];
     return (
         <div className="content-wrapper">
@@ -46,20 +49,26 @@ const News = () => {
                     <div className="news__sidebar-list">{<SidebarList list={list} />}</div>
                 </div>
                 <div className="news__content">
-                    {/* <ContentSlider slides={slides} style={{}}>
-                        <Slide />
-                    </ContentSlider> */}
-                    <div className="news__content-slider">
-                        <NewsSlider slides={slides}>
+                    {width < 1080 ? (
+                        <ContentSlider slides={slides} style={{ wigth: "max-content" }}>
                             <Slide />
-                        </NewsSlider>
-                    </div>
-                    {/* <div className="news__content-divider"></div> */}
-                    <div className="news__content-slider">
-                        <NewsSlider slides={slides}>
-                            <Slide />
-                        </NewsSlider>
-                    </div>
+                        </ContentSlider>
+                    ) : (
+                        <>
+                            {" "}
+                            <div className="news__content-slider news__content-slider-first">
+                                <NewsSlider slides={slides}>
+                                    <Slide />
+                                </NewsSlider>
+                            </div>
+                            {/* <div className="news__content-divider"></div> */}
+                            <div className="news__content-slider news__content-slider-second">
+                                <NewsSlider slides={slides}>
+                                    <Slide />
+                                </NewsSlider>
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
         </div>
