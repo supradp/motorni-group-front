@@ -1,10 +1,19 @@
 .cooperation {
     height: 100%;
     display: flex;
+    // position: relative;
+    .divider {
+        position: absolute;
+        height: 100%;
+        width: 1px;
+        background: black;
+        z-index: -1;
+        left: 422px;
+    }
     &__sidebar {
         padding: 42px 40px 50px 36px;
-        border-right: 1px solid #2c2c2c;
-        height: 100%;
+        // border-right: 1px solid #2c2c2c;
+        min-height: 100%;
         &-title {
             margin-top: 40px;
             font-weight: 500;
@@ -19,8 +28,10 @@
     &__content {
         padding: 44px 0px 50px 42px;
         display: flex;
-        gap: 87px;
+        width: 100%;
+        // gap: 87px;
         &-form {
+            width: 100%;
             &-title {
                 font-weight: 500;
                 font-size: 40px;
@@ -28,6 +39,7 @@
             }
             &-btn {
                 margin-top: 12px;
+                display: flex;
             }
         }
         &-list {
@@ -47,6 +59,9 @@
 
 @media (max-width: 1000px) {
     .cooperation {
+        .divider {
+            display: none;
+        }
         flex-wrap: wrap;
         gap: 20px;
         &__sidebar {

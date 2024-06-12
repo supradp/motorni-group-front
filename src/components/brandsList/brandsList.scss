@@ -1,0 +1,37 @@
+.brands-list {
+    &__item {
+        padding: 30px 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 90px;
+        border-bottom: 1px solid var(--textGray);
+        &-name {
+            white-space: nowrap;
+            &-title {
+                font-weight: 400;
+                font-size: 16px;
+            }
+            &-brand {
+                font-weight: 700;
+                font-size: 24px;
+                margin-top: 18px;
+            }
+        }
+        &-desc {
+            font-weight: 400;
+            font-size: 20px;
+        }
+        &-bar {
+            &-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 35px;
+                height: 35px;
+                border-radius: 20px;
+                border: 1px solid var(--textGray);
+                cursor: pointer;
+            }
+        }
+    }
+}

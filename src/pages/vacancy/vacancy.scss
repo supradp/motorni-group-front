@@ -1,47 +1,53 @@
 .vacancy {
     height: 100%;
-    display: flex;
-    &__sidebar {
-        padding: 42px 40px 50px 36px;
-        border-right: 1px solid #2c2c2c;
-        // width: 383px;
-        // min-width: 383px;
-
-        height: 100%;
-        &-title {
-            margin-top: 40px;
+    padding: 42px 40px 50px 36px;
+    &__title {
+        margin-top: 30px;
+        font-weight: 500;
+        font-size: 40px;
+    }
+    &__content {
+        min-width: 0;
+        margin-top: 30px;
+    }
+    .vacanc-list {
+        h2 {
+            margin-top: 20px;
+            margin-top: 30px;
             font-weight: 500;
             font-size: 40px;
         }
-        &-list {
-            margin-top: 72px;
-            width: 305px;
-            &-item {
-                font-weight: 400;
-                font-size: 20px;
-                margin-bottom: 10px;
+        #work-jobs-list {
+            margin-top: 20px;
+            list-style-type: none;
+            li {
+                border-bottom: 1px solid #2c2c2c;
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+                // white-space: nowrap;
+                margin-top: auto;
+                font-weight: 600;
+                font-size: 30px;
+                a {
+                    color: var(--primary);
+                    font-weight: 600;
+                    font-size: 30px;
+                    text-decoration: underline;
+                }
             }
         }
-    }
-    &__content {
-        padding: 44px 0px 50px 42px;
     }
 }
 
 @media (max-width: 1000px) {
     .vacancy {
         flex-wrap: wrap;
+        padding: 10px 0px;
         gap: 20px;
-        &__sidebar {
-            border: none;
-            height: auto;
-            width: 100%;
-            padding: 20px 0px 20px 0px;
-            &-title {
-                margin-top: 30px;
-                font-weight: 500;
-                font-size: 30px;
-            }
+        &__title {
+            margin-top: 30px;
+            font-weight: 500;
+            font-size: 30px;
         }
         &__content {
             padding: 0px 0px 20px 0px;

@@ -1,6 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const baseUrl = !process.env.NODE_ENV || process.env.NODE_ENV === "development" ? `http://motorni.sv/` : `/`;
+// export const baseUrl =
+//     !process.env.NODE_ENV || process.env.NODE_ENV === "development"
+//         ? `http://motorni.sv`
+//         : `https://emotorni.digiants.com.ua/`;
+
+export const baseUrl =
+    !process.env.NODE_ENV || process.env.NODE_ENV === "development"
+        ? `https://emotorni.digiants.com.ua/`
+        : `https://emotorni.digiants.com.ua/`;
 
 export const onQueryStartedErrorToast = async (args, { queryFulfilled }) => {
     try {
@@ -33,18 +41,34 @@ export const motorniAPI = createApi({
     reducerPath: "motorniAPI",
     baseQuery: fetchBaseQuery({
         baseUrl: baseUrl,
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        // prepareHeaders: (headers, { getState }) => {
+        //     const status = getState().status.isShowErrorModal;
+        //     headers.set("Content-Type", "application/json");
+        //     headers.set("Accept", "application/json");
+        //     if (status) {
+        //         headers.set("Authorization", "Bearer " + localStorage.getItem("token"));
+        //     }
+        //     return headers;
+        // },
     }),
     endpoints: (builder) => ({
         getPage: builder.query({
             query: (url) => ({ url: "api/" + url, method: "get" }),
             onQueryStarted: onQueryStartedErrorToast,
+
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
         }),
         sendForm: builder.mutation({
-            query: ({ body, url, method = "POST" }) => ({
+            query: ({
+                body,
+                url,
+                method = "POST",
+                headers = { "Content-Type": "application/json", Accept: "application/json" },
+            }) => ({
                 url: "api/" + url,
                 method: method,
                 body: body,
+                headers: headers,
             }),
             onQueryStarted: onQueryStartedErrorToast,
         }),

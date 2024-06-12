@@ -10,11 +10,23 @@
         margin-top: 35px;
         display: flex;
         gap: 63px;
+
         &-img {
             min-width: 650px;
-            object-fit: cover;
+            object-fit: contain;
+            object-position: top;
         }
         &-text {
+            max-height: 411px;
+            overflow: scroll;
+            // overflow-y: hidden;
+            overflow-x: hidden;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+
             color: var(--textBlack);
 
             &-date {
@@ -25,6 +37,12 @@
                 font-weight: 600;
                 font-size: 36px;
                 margin-top: 20px;
+            }
+            &-subtitle {
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 150%;
+                color: #525252;
             }
             &-txt {
                 font-weight: 400;
@@ -49,7 +67,7 @@
             &-img {
                 min-width: 300px;
                 width: 100%;
-                object-fit: cover;
+                object-fit: contain;
             }
             &-text {
                 color: var(--textBlack);

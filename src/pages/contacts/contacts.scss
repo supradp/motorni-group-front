@@ -1,11 +1,18 @@
 .contacts {
     height: 100%;
     display: flex;
-    // justify-content: space-between;
+    .divider {
+        position: absolute;
+        height: 100%;
+        width: 1px;
+        background: black;
+        z-index: -1;
+        left: 538px;
+    }
     &__sidebar {
         padding: 42px 40px 50px 36px;
-        border-right: 1px solid #2c2c2c;
-        height: 100%;
+        // border-right: 1px solid #2c2c2c;
+        min-height: 100%;
         &-title {
             margin-top: 40px;
             font-weight: 500;
@@ -16,6 +23,7 @@
             margin-top: 30px;
             &-btn {
                 margin-top: 12px;
+                display: flex;
             }
         }
         &-list {
@@ -43,6 +51,9 @@
     .contacts {
         flex-wrap: wrap;
         gap: 20px;
+        .divider {
+            display: none;
+        }
         &__sidebar {
             border: none;
             height: auto;

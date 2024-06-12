@@ -5,6 +5,7 @@
     }
     &__desc {
         display: flex;
+        justify-content: space-between;
         gap: 18px;
         margin-top: 7px;
         padding-right: 37px;
@@ -12,6 +13,10 @@
             font-weight: 400;
             font-size: 14px;
             line-height: 122%;
+            span {
+                text-decoration: underline;
+                color: var(--primary);
+            }
         }
         &-salary {
             white-space: nowrap;

@@ -1,64 +1,103 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./aboutUs.scss";
 import routes from "../../variables/routes";
 import BreadCrumbs from "../../components/breadCrumbs/BreadCrumbs";
 import ContentSlider from "../../components/contentSlider/ContentSlider";
 import SidebarList from "../../components/sidebarList/SidebarList";
-import BrandIcon from "../../assets/images/icons/brand-icon.svg";
-import DirectionsSlide from "../../components/sliders/slides/directionsSlide/DirectionsSlide";
-import BrandSlider from "../../components/sliders/brandSlider/BrandSlider";
+import { GoArrowDown } from "react-icons/go";
+import { SwiperSlide } from "swiper/react";
+import { useGetPageQuery } from "../../redux/services/motorniAPI";
 
 const list = [
-    { id: 1, title: "Керівництво" },
-    { id: 2, title: "Історія створення" },
-    { id: 3, title: "Місія і стратегія" },
-    { id: 4, title: "Цінності" },
-    { id: 5, title: "Виробництво" },
-    { id: 6, title: "Напрямки" },
-    { id: 7, title: "Соціальна відповідальність" },
-    { id: 8, title: "Декларація про відповідність" },
+    { id: 1, slug: "1", title: "Керівництво" },
+    { id: 2, slug: "2", title: "Історія створення" },
+    { id: 3, slug: "3", title: "Місія і стратегія" },
+    { id: 4, slug: "4", title: "Цінності" },
+    { id: 5, slug: "5", title: "Виробництво" },
+    { id: 6, slug: "6", title: "Напрямки" },
+    { id: 7, slug: "7", title: "Соціальна відповідальність" },
+    { id: 8, slug: "8", title: "Декларація про відповідність" },
 ];
 
-const brandsList = [
-    { id: 1, image: BrandIcon },
-    { id: 2, image: BrandIcon },
-    { id: 3, image: BrandIcon },
-    { id: 4, image: BrandIcon },
-    { id: 5, image: BrandIcon },
-    { id: 6, image: BrandIcon },
-    { id: 7, image: BrandIcon },
-];
-
-const Slide = ({ text }) => {
-    return <div className="about-us-slide">{text}</div>;
+const Slide = ({ slideData }) => {
+    return (
+        <div className="about-us__slide">
+            <div
+                className="about-us__slide-content"
+                dangerouslySetInnerHTML={{
+                    __html: "<p>Моторні на ринку України вже більше 25 років. Ми змінювались, трансформувались та зростали.Наразі ми маємо три напрямки діяльності, широку сітку дилерів та сервісних центрів, а також потужну та злагоджену команду Однак ми не зупиняємось на досягнутому та рухаємось вперед.</p>",
+                }}
+            />
+        </div>
+    );
 };
-
-const slides = [
-    { id: 1, slide: <Slide /> },
-    { id: 2, slide: <Slide /> },
-    { id: 3, slide: <Slide /> },
-];
 
 const AboutUs = () => {
     const breadCrumbsLinks = [{ title: "Про нас", route: routes.ABOUTUS }];
+
+    const [activeCategory, setActiveCAtegory] = useState("1");
+    const [activeCategoryid, setActiveCAtegoryId] = useState(1);
+
+    const containerRef = useRef(null);
+    const [scrollPosition, setScrollPosition] = useState(0);
+
+    const handleScroll = () => {
+        if (containerRef.current) {
+            const newScrollPosition = scrollPosition + 390; // Increment scroll position by 400px
+            containerRef.current.scrollTo({
+                top: newScrollPosition,
+                left: 0,
+                behavior: "smooth", // Smooth scrolling
+            });
+            setScrollPosition(newScrollPosition);
+        }
+    };
+
+    useEffect(() => {
+        const handleWheel = (event) => {
+            setScrollPosition(0);
+        };
+
+        window.addEventListener("wheel", handleWheel);
+
+        return () => {
+            window.removeEventListener("wheel", handleWheel);
+        };
+    }, []);
+
     return (
         <div className="content-wrapper">
             <div className="about-us">
                 <div className="about-us__sidebar">
                     <BreadCrumbs links={breadCrumbsLinks} />
                     <div className="about-us__sidebar-title">Про компанію</div>
-                    <div className="about-us__sidebar-list">{<SidebarList list={list} />}</div>
+                    <div className="about-us__sidebar-list">
+                        {<SidebarList list={list} active={activeCategory} setActive={setActiveCAtegory} />}
+                    </div>
                 </div>
+                <div className="divider"></div>
                 <div className="about-us__content">
-                    {/* slide 1 */}
-                    <ContentSlider slides={slides} isVertical={true} style={{ height: "450px" }}>
-                        <Slide
-                            text={
-                                "Моторні на ринку України вже більше 25 років. Ми змінювались, трансформувались та зростали. Наразі ми маємо три напрямки діяльності, широку сітку дилерів та сервісних центрів, а також потужну та злагоджену команду! Однак ми не зупиняємось на досягнутому та рухаємось вперед."
-                            }
+                    <div className="about-us__slide" ref={containerRef}>
+                        <div
+                            className="about-us__slide-content"
+                            dangerouslySetInnerHTML={{
+                                __html: "<p>Моторні на ринку України вже більше 25 років. Ми змінювались, трансформувались та зростали.Наразі ми маємо три напрямки діяльності, широку сітку дилерів та сервісних центрів, а також потужну та злагоджену команду Однак ми не зупиняємось на досягнутому та рухаємось вперед.</p> <p>Моторні на ринку України вже більше 25 років. Ми змінювались, трансформувались та зростали.Наразі ми маємо три напрямки діяльності, широку сітку дилерів та сервісних центрів, а також потужну та злагоджену команду Однак ми не зупиняємось на досягнутому та рухаємось вперед.</p><p>Моторні на ринку України вже більше 25 років. Ми змінювались, трансформувались та зростали.Наразі ми маємо три напрямки діяльності, широку сітку дилерів та сервісних центрів, а також потужну та злагоджену команду Однак ми не зупиняємось на досягнутому та рухаємось вперед.</p> <p>Моторні на ринку України вже більше 25 років. Ми змінювались, трансформувались та зростали.Наразі ми маємо три напрямки діяльності, широку сітку дилерів та сервісних центрів, а також потужну та злагоджену команду Однак ми не зупиняємось на досягнутому та рухаємось вперед.</p>",
+                            }}
                         />
-                    </ContentSlider>
-
+                    </div>
+                    <div className="about-us__content-btn btn-animation" onClick={handleScroll}>
+                        <GoArrowDown size={"17px"} fill="#525252" />
+                    </div>
+                    {/* slide 1 */}
+                    {/* <ContentSlider isVertical={true} style={{ height: "450px" }}>
+                        {news?.data.map((slide) => {
+                            return (
+                                <SwiperSlide key={slide.id}>
+                                    <Slide slideData={slide} />
+                                </SwiperSlide>
+                            );
+                        })}
+                    </ContentSlider> */}
                     {/* slide2 */}
                     {/* <ContentSlider slides={slides} isVertical={false} style={{ height: "max-content" }}>
                         <DirectionsSlide

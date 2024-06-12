@@ -1,7 +1,16 @@
 .news {
+    .divider {
+        position: absolute;
+        height: 100%;
+        width: 1px;
+        background: black;
+        z-index: -1;
+        left: 422px;
+    }
     .news-slide {
         &__img {
             width: 100%;
+            max-height: 280px;
             object-fit: cover;
         }
         &__title {
@@ -17,12 +26,47 @@
             margin-top: 13px;
         }
     }
+    .user-slide {
+        &__header {
+            display: flex;
+            gap: 54px;
+            &-img {
+                max-width: 440px;
+                min-width: 300px;
+                // max-height: 357px;
+                object-fit: contain;
+                object-position: top;
+                width: 100%;
+            }
+            &-text {
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 150%;
+                color: #525252;
+            }
+        }
+        &__footer {
+            margin-top: 25px;
+            &-name {
+                font-weight: 700;
+                font-size: 24px;
+            }
+            &-position {
+                font-weight: 400;
+                font-size: 20px;
+
+                color: #525252;
+                margin-top: 8px;
+            }
+        }
+    }
     height: 100%;
     display: flex;
     &__sidebar {
         padding: 42px 40px 50px 36px;
-        border-right: 1px solid #2c2c2c;
-        height: 100%;
+        // border-right: 1px solid #2c2c2c;
+        min-height: 100%;
+
         &-title {
             margin-top: 40px;
             font-weight: 500;
@@ -31,56 +75,71 @@
         &-list {
             margin-top: 72px;
             width: 305px;
+            &-item {
+                display: flex;
+                font-weight: 400;
+                font-size: 20px;
+                margin-top: 15px;
+            }
         }
     }
     &__content {
         min-width: 0;
+        min-height: 0;
 
-        display: flex;
+        // display: flex;
         &-slider {
-            padding: 44px 45px 50px 42px;
-            &-first {
-                border-right: 1px solid var(--textGray);
-            }
-        }
-
-        &-divider {
-            height: 100%;
-            width: 2px;
-            background: var(--textGray);
-        }
-    }
-}
-
-@media (max-width: 1450px) {
-    .news {
-        flex-wrap: wrap;
-
-        &__sidebar {
-            border: none;
-            height: auto;
-            padding: 15px 0px 20px 0px;
-            &-title {
-                margin-top: 30px;
-                font-weight: 500;
-                font-size: 30px;
-            }
-            &-list {
-                margin-top: 32px;
-                width: auto;
-            }
-        }
-        &__content {
             min-width: 0;
-
-            padding: 0px 0px 20px 0px;
+            min-height: 0;
+            padding: 44px 45px 50px 42px;
         }
+
+        // &-divider {
+        //     height: 100%;
+        //     width: 2px;
+        //     background: var(--textGray);
+        // }
     }
 }
+
+// @media (max-width: 1450px) {
+//     .news {
+//         &__sidebar {
+//             border: none;
+//             height: auto;
+//             padding: 15px 0px 20px 0px;
+//             &-title {
+//                 margin-top: 30px;
+//                 font-weight: 500;
+//                 font-size: 30px;
+//             }
+//             &-list {
+//                 margin-top: 32px;
+//                 width: auto;
+//             }
+//         }
+//         &__content {
+//             min-width: 0;
+
+//             padding: 0px 0px 20px 0px;
+//         }
+//     }
+// }
 
 @media (max-width: 1080px) {
     .news {
         flex-wrap: wrap;
+        .divider {
+            display: none;
+        }
+        .user-slide {
+            &__header {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+        }
 
         &__content {
             display: block;
@@ -89,6 +148,14 @@
             }
             &-slider-first {
                 border: none;
+            }
+        }
+        &__content {
+            min-width: 0;
+            padding: 0px 0px 20px 0px;
+            // display: flex;
+            &-slider {
+                padding: 0px;
             }
         }
     }

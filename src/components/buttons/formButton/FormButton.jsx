@@ -1,11 +1,10 @@
 import React from "react";
 import "./formButton.scss";
 
-const FormButton = ({ title, onPress }) => {
+const FormButton = ({ title, onPress, type }) => {
     return (
-        <div className="form-button btn-animation" onClick={onPress}>
-            {title}
-        </div>
+        <input type={type} className="form-button btn-animation" onClick={onPress} value={title} />
+        // {title}
     );
 };
 

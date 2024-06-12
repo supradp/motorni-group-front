@@ -1,11 +1,18 @@
 .directions {
     height: 100%;
     display: flex;
-
+    .divider {
+        position: absolute;
+        height: 100%;
+        width: 1px;
+        background: black;
+        z-index: -1;
+        left: 422px;
+    }
     // justify-content: space-between;
     &__sidebar {
         padding: 42px 40px 50px 36px;
-        border-right: 1px solid #2c2c2c;
+        // border-right: 1px solid #2c2c2c;
         height: 100%;
         &-title {
             margin-top: 40px;
@@ -21,6 +28,11 @@
         min-width: 0;
 
         padding: 44px 0px 50px 42px;
+        &-title {
+            margin-top: 70px;
+            font-weight: 400;
+            font-size: 24px;
+        }
     }
 }
 
@@ -29,6 +41,9 @@
         height: 100%;
         display: flex;
         flex-wrap: wrap;
+        .divider {
+            display: none;
+        }
 
         // justify-content: space-between;
         &__sidebar {
@@ -47,8 +62,11 @@
         }
         &__content {
             min-width: 0;
-
             padding: 0px 15px 20px 15px;
+            &-title {
+                margin-top: 20px;
+                font-size: 20px;
+            }
         }
     }
 }

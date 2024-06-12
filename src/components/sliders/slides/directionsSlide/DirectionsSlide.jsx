@@ -1,20 +1,12 @@
 import React from "react";
-import './directionsSlide.scss';
+import "./directionsSlide.scss";
+import { Link } from "react-router-dom";
 
-const DirectionsSlide = ({ title, brands }) => {
+const DirectionsSlide = ({ brand }) => {
     return (
-        <div className="directions-slide">
-            <div className="directions-slide__title">{title}</div>
-            <div className="directions-slide__list">
-                {brands.map((brand) => {
-                    return (
-                        <div className="directions-slide__list-item" key={brand.id}>
-                            <img src={brand.image} alt="" className="directions-slide__list-item-img" />
-                        </div>
-                    );
-                })}
-            </div>
-        </div>
+        <Link to={brand.link} className="directions-slide" key={brand.id}>
+            <img src={brand.image} alt="" className="directions-slide-img" />
+        </Link>
     );
 };
 

@@ -32,11 +32,9 @@ const NewsSlider = ({ slides, children }) => {
                     slidesPerView={1}
                     onSlideChange={(slide) => setActiveIndex(slide.realIndex)}
                     loop={true}
-                    style={{ width: "420px" }}
+                    style={{ width: "840px" }}
                 >
-                    {slides.map((slide) => {
-                        return <SwiperSlide key={slide.id}>{children}</SwiperSlide>;
-                    })}
+                    {children}
                 </Swiper>
                 <div className="news-slider__bar">
                     <div className="news-slider__bar-btn btn-animation" onClick={handlePrev}>

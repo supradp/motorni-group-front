@@ -1,17 +1,21 @@
 import React from "react";
 import "./vacancyItem.scss";
+import { Link } from "react-router-dom";
 
-const VacancyItem = () => {
+const VacancyItem = ({ slideData }) => {
     return (
         <div className="vacancy-item">
-            <div className="vacancy-item__title">Водій-експедитор</div>
+            <div className="vacancy-item__title">{slideData?.title}</div>
             <div className="vacancy-item__desc">
                 <div className="vacancy-item__desc-txt">
-                    Спеціаліст, який займається доставкою вантажів та товарів за певним маршрутом з використанням
-                    автотранспорту. Він відповідає за завантаження, розвантаження, перевезення та доставку вантажів у
-                    строк та в цілості. Водій-експедитор повинен мати гарне знання дорожніх...
+                    {slideData?.text}{" "}
+                    <span className="btn-animation">
+                        <Link to={slideData?.link} target="_blank">
+                            Дізнатись більше
+                        </Link>
+                    </span>
                 </div>
-                <div className="vacancy-item__desc-salary">17 000 грн / міс.</div>
+                <div className="vacancy-item__desc-salary">{slideData?.price}</div>
             </div>
         </div>
     );

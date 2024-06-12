@@ -3,9 +3,13 @@
         font-weight: 400;
         font-size: 40px;
     }
+    .slides-wrapper {
+        display: flex;
+    }
     &__bar {
         display: flex;
         gap: 24px;
+        justify-content: space-between;
         margin-top: 47px;
         margin-left: 20px;
         &-btn {
