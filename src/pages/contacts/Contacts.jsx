@@ -13,7 +13,8 @@ import { setErrorMassage } from "../../redux/slices/statusSlice";
 import ContactItem from "../../components/contacts/contactItem/ContactItem";
 import { SwiperSlide } from "swiper/react";
 import { Helmet } from "react-helmet";
-
+import useWindowDimensions from "../../helpers/useWindowDimensions";
+import BgIcon from "../../assets/images/BG/bg-icon.svg";
 const text =
     "Моторні на ринку України вже більше 25 років. Ми змінювались, трансформувались та зростали. Наразі ми маємо три напрямки діяльності, широку сітку дилерів та сервісних центрів...";
 
@@ -39,6 +40,8 @@ const Contacts = () => {
     const [phone, setPhone] = useState("");
     const [message, setMessage] = useState("");
 
+    const { width } = useWindowDimensions();
+
     const [sliderContactsList, setSliderContactsList] = useState([]);
 
     const dispatch = useDispatch();
@@ -47,6 +50,9 @@ const Contacts = () => {
     const { data: contacts } = useGetPageQuery("single/contacts");
 
     const contactsList = contacts?.data?.single?.offices?.offices;
+
+    const metaTitle = contacts?.data?.single?.meta?.meta_title;
+    const metaDesc = contacts?.data?.single?.meta?.meta_description;
 
     function splitArrayIntoChunks(arr, chunkSize) {
         let result = [];
@@ -102,7 +108,8 @@ const Contacts = () => {
             {contacts && (
                 <div className="content-wrapper">
                     <Helmet>
-                        <title>{`${"motorni" ? "motorni" : "motorni"}`}</title>
+                        <title>{`${metaTitle ? metaTitle : "motorni"}`}</title>
+                        <meta name="description" content={`${metaDesc ? metaDesc : "motorni"}`} />
                     </Helmet>
                     <div className="contacts">
                         <div className="contacts__sidebar">
@@ -110,7 +117,7 @@ const Contacts = () => {
                             <div className="contacts__sidebar-title">Контакти</div>
                             <form onSubmit={sendFormHandler} className="contacts__sidebar-form">
                                 <div className="contacts__sidebar-form-form">
-                                    <FormInput value={name} setValue={setName} ph={"ПІП"} type={"text"} />
+                                    <FormInput value={name} setValue={setName} ph={"ПІБ"} type={"text"} />
                                     <FormInput value={mail} setValue={setMail} ph={"Електронна пошта"} type={"email"} />
                                     <FormInput
                                         value={phone}
@@ -131,8 +138,13 @@ const Contacts = () => {
                                 </div>
                             </form>
                         </div>
-                        <div className="divider"></div>
-                        <div className="contacts__content">
+                        <div className="divider">
+                            <img src={BgIcon} alt="" className="bg-icon" />
+                        </div>
+                        <div
+                            className="contacts__content"
+                            style={{ marginTop: contacts.length > 2 && width < 1350 ? "0px" : "65px" }}
+                        >
                             <ContentSlider
                                 slides={slides}
                                 style={{ height: "max-content" }}

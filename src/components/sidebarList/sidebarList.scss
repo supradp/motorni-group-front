@@ -1,4 +1,6 @@
 .sidebar-list {
+    position: relative;
+    z-index: 2;
     &__item {
         font-weight: 400;
         font-size: 20px;

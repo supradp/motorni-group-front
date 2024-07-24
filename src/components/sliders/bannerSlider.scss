@@ -1,19 +1,19 @@
 .banner-slider {
     overflow: hidden;
-    height: 100vh;
 
     .banner-slider-wrapper {
         min-height: 0;
         min-width: 0;
-        height: 100vh;
-        max-height: 100vh;
+        height: 100dvh;
     }
 
-    .swiper-slide {
-        max-height: 100vh;
+    .swiper-autoheight,
+    .swiper-autoheight .swiper-slide {
+        height: 100dvh;
     }
 
     .slide {
+        height: 100dvh;
         .cursor__conteiner {
             position: absolute;
             left: 0;
@@ -21,10 +21,10 @@
             top: 0;
             bottom: 0;
         }
-        height: 100vh;
+        height: 100dvh;
         display: flex;
         // width: 100vh;
-        // max-height: 100vh;
+        // max-height: 100dvh;
         // max-width: 100vh;
         // cursor: pointer;
         &:hover {
@@ -59,8 +59,8 @@
         &-img {
             width: 100%;
             height: 100%;
-
             object-fit: cover;
+            z-index: -1;
         }
         &__brands {
             position: absolute;
@@ -69,7 +69,10 @@
             display: flex;
             flex-direction: column;
             gap: 7px;
-
+            padding-left: -5px;
+            &-gray {
+                background: #8080809e;
+            }
             &-item {
                 &:hover {
                     .slide__btn {
@@ -202,8 +205,12 @@
     .banner-slider {
         .slide {
             &__brands {
-                left: 25px;
+                display: none;
             }
+            .slide__btn {
+                opacity: 0 !important;
+            }
+            cursor: auto !important;
         }
         &__bar {
             height: 120px;

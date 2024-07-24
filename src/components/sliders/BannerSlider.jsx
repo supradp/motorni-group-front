@@ -37,6 +37,7 @@ const BannerSlider = () => {
     const slidRef = useRef();
 
     const metaTitle = page?.data?.single?.meta?.meta_title;
+    const metaDesc = page?.data?.single?.meta?.meta_description;
 
     useEffect(() => {
         if (directions?.data && page?.data) {
@@ -124,15 +125,17 @@ const BannerSlider = () => {
                     <div className="banner-slider-wrapper">
                         <Helmet>
                             <title>{`${metaTitle ? metaTitle : "motorni"}`}</title>
+                            <meta name="description" content={`${metaDesc ? metaDesc : "motorni"}`} />
                         </Helmet>
 
                         <Swiper
                             ref={sliderRef}
                             spaceBetween={0}
-                            slidesPerView={1}
+                            slidesPerView="auto"
                             onSlideChange={(slide) => setActiveIndex(slide.realIndex)}
                             loop={true}
-                            direction="horizontal"
+                            direction="vertical"
+                            autoHeight={true}
                             speed={1200}
                         >
                             {changedDirections.map((slide) => {
@@ -165,7 +168,11 @@ const BannerSlider = () => {
                                                 </div>
 
                                                 <div
-                                                    className="slide__brands"
+                                                    className={
+                                                        slide.slug === "elektomobili"
+                                                            ? "slide__brands slide__brands-gray"
+                                                            : "slide__brands"
+                                                    }
                                                     onMouseEnter={showMouseHandler}
                                                     onMouseLeave={hideMouseHandler}
                                                 >
@@ -189,7 +196,19 @@ const BannerSlider = () => {
                                                         );
                                                     })}
                                                 </div>
-                                                <img src={slide?.image_full} className="slide-img" />
+                                                {slide?.image_full.includes("mp4") ? (
+                                                    <video
+                                                        src={slide?.image_full}
+                                                        className="slide-img"
+                                                        autoPlay
+                                                        loop
+                                                        muted
+                                                        playsInline
+                                                        type="video/mp4"
+                                                    />
+                                                ) : (
+                                                    <img src={slide?.image_full} className="slide-img" />
+                                                )}
                                             </div>
                                         )}
                                     </SwiperSlide>

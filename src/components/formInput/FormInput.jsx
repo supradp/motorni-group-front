@@ -10,10 +10,15 @@ const FormInput = ({ value, setValue, ph, isPhone = false, type, id = "" }) => {
 
     return (
         <div className="form-input">
+            {type === "file" && (
+                <label className="form-input-file-lable" htmlFor={id}>
+                    {value ? `Обрано : ${value}` : "Обрати файл"}
+                </label>
+            )}
             <input
                 ref={isPhone ? inputRef : null}
                 type={type}
-                className="form-input__input"
+                className={type === "file" ? "form-input__input form-input__input-file" : "form-input__input"}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 placeholder={ph}

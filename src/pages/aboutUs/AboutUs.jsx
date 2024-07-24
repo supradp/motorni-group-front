@@ -7,6 +7,8 @@ import SidebarList from "../../components/sidebarList/SidebarList";
 import { GoArrowDown } from "react-icons/go";
 import { SwiperSlide } from "swiper/react";
 import { useGetPageQuery } from "../../redux/services/motorniAPI";
+import BgIcon from "../../assets/images/BG/bg-icon.svg";
+import { Helmet } from "react-helmet";
 
 const list = [
     { id: 1, slug: "1", title: "Керівництво" },
@@ -41,6 +43,13 @@ const AboutUs = () => {
     const containerRef = useRef(null);
     const [scrollPosition, setScrollPosition] = useState(0);
 
+    const { data: aboutUs } = useGetPageQuery("abouts");
+
+    const metaTitle =
+        "Про компанію motorni-group | Сільгосптехніка, Інструмент та техніка, Електромобілі, Вело-мототехніка";
+    const metaDesc =
+        "Дізнайтеся більше про компанію motorni-group - лідера у продажі та обслуговуванні сільгосптехніки, інструменту та техніки, електромобілів та вело-мототехніки в Україні.";
+
     const handleScroll = () => {
         if (containerRef.current) {
             const newScrollPosition = scrollPosition + 390; // Increment scroll position by 400px
@@ -54,6 +63,16 @@ const AboutUs = () => {
     };
 
     useEffect(() => {
+        if (containerRef.current) {
+            containerRef.current.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: "smooth",
+            });
+        }
+    }, [activeCategory]);
+
+    useEffect(() => {
         const handleWheel = (event) => {
             setScrollPosition(0);
         };
@@ -65,31 +84,51 @@ const AboutUs = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (aboutUs) {
+            setActiveCAtegory(aboutUs?.data[0]?.slug);
+        }
+    }, [aboutUs]);
+
     return (
-        <div className="content-wrapper">
-            <div className="about-us">
-                <div className="about-us__sidebar">
-                    <BreadCrumbs links={breadCrumbsLinks} />
-                    <div className="about-us__sidebar-title">Про компанію</div>
-                    <div className="about-us__sidebar-list">
-                        {<SidebarList list={list} active={activeCategory} setActive={setActiveCAtegory} />}
-                    </div>
-                </div>
-                <div className="divider"></div>
-                <div className="about-us__content">
-                    <div className="about-us__slide" ref={containerRef}>
-                        <div
-                            className="about-us__slide-content"
-                            dangerouslySetInnerHTML={{
-                                __html: "<p>Моторні на ринку України вже більше 25 років. Ми змінювались, трансформувались та зростали.Наразі ми маємо три напрямки діяльності, широку сітку дилерів та сервісних центрів, а також потужну та злагоджену команду Однак ми не зупиняємось на досягнутому та рухаємось вперед.</p> <p>Моторні на ринку України вже більше 25 років. Ми змінювались, трансформувались та зростали.Наразі ми маємо три напрямки діяльності, широку сітку дилерів та сервісних центрів, а також потужну та злагоджену команду Однак ми не зупиняємось на досягнутому та рухаємось вперед.</p><p>Моторні на ринку України вже більше 25 років. Ми змінювались, трансформувались та зростали.Наразі ми маємо три напрямки діяльності, широку сітку дилерів та сервісних центрів, а також потужну та злагоджену команду Однак ми не зупиняємось на досягнутому та рухаємось вперед.</p> <p>Моторні на ринку України вже більше 25 років. Ми змінювались, трансформувались та зростали.Наразі ми маємо три напрямки діяльності, широку сітку дилерів та сервісних центрів, а також потужну та злагоджену команду Однак ми не зупиняємось на досягнутому та рухаємось вперед.</p>",
-                            }}
-                        />
-                    </div>
-                    <div className="about-us__content-btn btn-animation" onClick={handleScroll}>
-                        <GoArrowDown size={"17px"} fill="#525252" />
-                    </div>
-                    {/* slide 1 */}
-                    {/* <ContentSlider isVertical={true} style={{ height: "450px" }}>
+        <>
+            {aboutUs && (
+                <div className="content-wrapper">
+                    <div className="about-us">
+                        <Helmet>
+                            <title>{`${metaTitle ? metaTitle : "motorni"}`}</title>
+                            <meta name="description" content={`${metaDesc ? metaDesc : "motorni"}`} />
+                        </Helmet>
+                        <div className="about-us__sidebar">
+                            <BreadCrumbs links={breadCrumbsLinks} />
+                            <div className="about-us__sidebar-title">Про компанію</div>
+                            <div className="about-us__sidebar-list">
+                                {
+                                    <SidebarList
+                                        list={aboutUs?.data}
+                                        active={activeCategory}
+                                        setActive={setActiveCAtegory}
+                                    />
+                                }
+                            </div>
+                        </div>
+                        <div className="divider">
+                            <img src={BgIcon} alt="" className="bg-icon" />
+                        </div>
+                        <div className="about-us__content">
+                            <div className="about-us__slide" ref={containerRef}>
+                                <div
+                                    className="about-us__slide-content"
+                                    dangerouslySetInnerHTML={{
+                                        __html: aboutUs?.data.find((item) => item.slug === activeCategory)?.content,
+                                    }}
+                                />
+                            </div>
+                            <div className="about-us__content-btn btn-animation" onClick={handleScroll}>
+                                <GoArrowDown size={"17px"} fill="#525252" />
+                            </div>
+                            {/* slide 1 */}
+                            {/* <ContentSlider isVertical={true} style={{ height: "450px" }}>
                         {news?.data.map((slide) => {
                             return (
                                 <SwiperSlide key={slide.id}>
@@ -98,8 +137,8 @@ const AboutUs = () => {
                             );
                         })}
                     </ContentSlider> */}
-                    {/* slide2 */}
-                    {/* <ContentSlider slides={slides} isVertical={false} style={{ height: "max-content" }}>
+                            {/* slide2 */}
+                            {/* <ContentSlider slides={slides} isVertical={false} style={{ height: "max-content" }}>
                         <DirectionsSlide
                             brands={brandsList}
                             title={
@@ -108,9 +147,11 @@ const AboutUs = () => {
                         />
                     </ContentSlider>
                     <BrandSlider /> */}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            )}
+        </>
     );
 };
 

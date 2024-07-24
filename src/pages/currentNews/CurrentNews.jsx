@@ -36,7 +36,9 @@ const CurrentNews = () => {
 
                         <div className="current-news__title">Новини</div>
                         <div className="current-news__content">
-                            <img src={news?.image} alt="" className="current-news__content-img" />
+                            {news?.image.length > 0 && (
+                                <img src={news?.image} alt="" className="current-news__content-img" />
+                            )}
                             <div className="current-news__content-text">
                                 <div className="current-news__content-text-date">
                                     {moment(news?.created_at).format("DD-MM-YYYY")}

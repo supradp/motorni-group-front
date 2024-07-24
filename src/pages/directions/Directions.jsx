@@ -9,7 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import BrandsSlider from "../../components/sliders/slides/brandsSlider/BrandsSlider.jsx";
 import { Helmet } from "react-helmet";
 import BrandsList from "../../components/brandsList/BrandsList.jsx";
-
+import BgIcon from "../../assets/images/BG/bg-icon.svg";
 const Directions = () => {
     const breadCrumbsLinks = [{ title: "Напрямки", route: routes.DIRECTIONSLINK }];
 
@@ -36,6 +36,10 @@ const Directions = () => {
                 <div className="content-wrapper">
                     <Helmet>
                         <title>{`${direction?.meta_title ? direction?.meta_title : "motorni"}`}</title>
+                        <meta
+                            name="description"
+                            content={`${direction?.meta_description ? direction?.meta_description : "motorni"}`}
+                        />
                     </Helmet>
                     <div className="directions">
                         <div className="directions__sidebar">
@@ -52,7 +56,9 @@ const Directions = () => {
                                 }
                             </div>
                         </div>
-                        <div className="divider"></div>
+                        <div className="divider">
+                            <img src={BgIcon} alt="" className="bg-icon" />
+                        </div>
                         <div className="directions__content">
                             {/* slide 1 */}
                             {/* <ContentSlider slides={slides} isVertical={true} style={{ height: "450px" }}>

@@ -2,7 +2,11 @@ import React from "react";
 import "./mainBanner.scss";
 import { Link } from "react-router-dom";
 import routes from "../../../../variables/routes";
+import useWindowDimensions from "../../../../helpers/useWindowDimensions.js";
+import { addWordBreaks } from "../../../../helpers/addWordBreaks.js";
 const MainBanner = ({ slideData }) => {
+    const { width } = useWindowDimensions();
+
     return (
         <>
             {slideData && (
@@ -21,7 +25,7 @@ const MainBanner = ({ slideData }) => {
                                             : "main-banner__img-title main-banner__img-title-break"
                                     }
                                 >
-                                    {slideData.titles[index]}
+                                    {width > 1000 ? slideData.titles[index] : addWordBreaks(slideData.titles[index], 7)}
                                 </div>
                                 <img src={slideData?.imgs[index]} alt="" className="main-banner__img-img" />
                             </Link>

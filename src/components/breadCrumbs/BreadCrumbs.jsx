@@ -1,9 +1,10 @@
 import React from "react";
 import "./breadCrumbs.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import routes from "../../variables/routes";
 
 const BreadCrumbs = ({ links }) => {
+    const { pathname } = useLocation();
     return (
         <div className="bread-crumbs">
             <Link to={routes.MAIN} className="bread-crumbs__link btn-animation">

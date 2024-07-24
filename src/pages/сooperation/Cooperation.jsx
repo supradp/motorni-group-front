@@ -10,7 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useDispatch } from "react-redux";
 import { setErrorMassage } from "../../redux/slices/statusSlice";
-
+import BgIcon from "../../assets/images/BG/bg-icon.svg";
 const list = [
     { id: "dealers", slug: "dealers", title: "Стати дилером" },
     { id: "vacancies", slug: "vacancies", title: "Стати співробітником" },
@@ -32,6 +32,7 @@ const Cooperation = () => {
     const { data: page } = useGetPageQuery(`single/${activeCategory}`);
 
     const metaTitle = page?.data?.single?.meta?.meta_title;
+    const metaDesc = page?.data?.single?.meta?.meta_description;
     const activeCategoryName = list.find((listItem) => listItem.slug === activeCategory)?.title || "";
     const isVacancies = activeCategory === "vacancies";
 
@@ -102,6 +103,7 @@ const Cooperation = () => {
         <div className="content-wrapper">
             <Helmet>
                 <title>{`${metaTitle ? metaTitle : "motorni"}`}</title>
+                <meta name="description" content={`${metaDesc ? metaDesc : "motorni"}`} />
             </Helmet>
             <div className="cooperation">
                 <div className="cooperation__sidebar">
@@ -111,15 +113,18 @@ const Cooperation = () => {
                         {<SidebarList list={list} active={activeCategory} setActive={setActiveCAtegory} />}
                     </div>
                 </div>
-                <div className="divider"></div>
+                <div className="divider">
+                    <img src={BgIcon} alt="" className="bg-icon" />
+                </div>
                 <div className="cooperation__content">
                     <form
                         onSubmit={isVacancies ? sendFormHandler : sendDealerFormHandler}
                         className="cooperation__content-form"
+                        style={{ marginTop: isVacancies ? "0" : "65px" }}
                     >
                         <div className="cooperation__content-form-title">{activeCategoryName}</div>
                         <div className="cooperation__content-form-form">
-                            <FormInput value={name} setValue={setName} ph={"ПІП"} />
+                            <FormInput value={name} setValue={setName} ph={"ПІБ"} />
                             {isVacancies && <FormInput value={vacancy} setValue={setVacancy} ph={"Посада"} />}
                             <FormInput
                                 value={phone}

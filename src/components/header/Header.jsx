@@ -73,12 +73,14 @@ const Header = ({ isMain }) => {
                                 Контакти
                             </Link>
                             <div className="header__menu-dropdown-links-divider"></div>
-                            <div
+                            {/* <div onClick={hideMenuHandler}>Купуй онлайн</div> */}
+                            <Link
+                                to={"https://romb.ua/ua/"}
+                                target="_blank"
                                 className="header__menu-dropdown-links-item header__menu-dropdown-links-item-buy btn-animation"
-                                onClick={hideMenuHandler}
                             >
                                 Купуй онлайн
-                            </div>
+                            </Link>
 
                             <Link
                                 to={routes.VACANCY}

@@ -2,9 +2,18 @@
     padding: 22px 30px;
     border: 1px solid var(--textGray);
     margin-top: 12px;
+    &-file-lable {
+        font-weight: 400;
+        font-size: 20px;
+        cursor: pointer;
+        color: var(--primary);
+    }
     // display: flex;
     &__input {
         font-weight: 400;
         font-size: 20px;
+        &-file {
+            visibility: hidden;
+        }
     }
 }

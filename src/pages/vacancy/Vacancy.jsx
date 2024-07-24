@@ -4,7 +4,7 @@ import routes from "../../variables/routes";
 import BreadCrumbs from "../../components/breadCrumbs/BreadCrumbs";
 import VacancyItem from "../../components/vacancy/vacancyItem/VacancyItem";
 import { useGetPageQuery } from "../../redux/services/motorniAPI";
-
+import BgIcon from "../../assets/images/BG/bg-icon.svg";
 import { Helmet } from "react-helmet";
 
 const Slide = ({ slides }) => {
@@ -22,7 +22,9 @@ const Vacancy = () => {
 
     const { data: page } = useGetPageQuery(`single/vacancies`);
 
-    const metaTitle = page?.data?.single?.meta_title?.meta_title;
+    const metaTitle = "Вакансії | motorni-group";
+    const metaDesc =
+        "Приєднуйтеся до команди motorni-group! Ознайомтеся з нашими актуальними вакансіями та станьте частиною лідера в сфері сільгосптехніки, інструменту та техніки, електромобілів та вело-мототехніки.";
 
     useEffect(() => {
         const script = document.createElement("script");
@@ -43,6 +45,7 @@ const Vacancy = () => {
             <div className="content-wrapper">
                 <Helmet>
                     <title>{`${metaTitle ? metaTitle : "motorni"}`}</title>
+                    <meta name="description" content={`${metaDesc ? metaDesc : "motorni"}`} />
                 </Helmet>
                 <div className="vacancy">
                     <BreadCrumbs links={breadCrumbsLinks} />
@@ -59,6 +62,7 @@ const Vacancy = () => {
                                 Work.ua
                             </a>
                         </p>
+                        {/* <img src={BgIcon} alt="" className="bg-icon" /> */}
                     </div>
                     {/* <div className="vacancy__sidebar">
                             <BreadCrumbs links={breadCrumbsLinks} />

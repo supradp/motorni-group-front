@@ -71,13 +71,16 @@ body {
 }
 
 .global-container {
+    position: relative;
     width: 100%;
     min-height: 100%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    .main-bg-icon {
+        display: none;
+    }
     .content {
         position: relative;
         min-height: 100vh;
@@ -88,6 +91,22 @@ body {
         height: 100%;
     }
 }
+
+// @media (max-width: 1000px) {
+//     .global-container {
+//         .main-bg-icon {
+//             display: block;
+//             position: absolute;
+//             top: 100px;
+//             left: 50%;
+//             transform: translateX(-50%);
+//             z-index: -1;
+//             width: 250px;
+//             height: 250px;
+//             opacity: 0.2;
+//         }
+//     }
+// }
 
 .page-content__container {
     padding: 0 50px 50px 50px;

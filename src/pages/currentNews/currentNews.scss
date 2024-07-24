@@ -21,6 +21,13 @@
             overflow: scroll;
             // overflow-y: hidden;
             overflow-x: hidden;
+            text-align: justify;
+            ul {
+                margin-top: 15px;
+            }
+            p {
+                margin-bottom: 15px;
+            }
             &::-webkit-scrollbar {
                 display: none;
             }

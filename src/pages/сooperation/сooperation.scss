@@ -7,13 +7,24 @@
         height: 100%;
         width: 1px;
         background: black;
-        z-index: -1;
+        z-index: 1;
         left: 422px;
+        .bg-icon {
+            position: absolute;
+            top: 65%;
+            left: -200px;
+            width: 350px;
+            height: 350px;
+            opacity: 0.2;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
     }
     &__sidebar {
         padding: 42px 40px 50px 36px;
-        // border-right: 1px solid #2c2c2c;
+        position: relative;
         min-height: 100%;
+        z-index: 2;
         &-title {
             margin-top: 40px;
             font-weight: 500;
@@ -22,6 +33,14 @@
         &-list {
             margin-top: 72px;
             width: 305px;
+            &-bg {
+                opacity: 0.2;
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 350px;
+            }
         }
     }
 
@@ -34,7 +53,7 @@
             width: 100%;
             &-title {
                 font-weight: 500;
-                font-size: 40px;
+                font-size: 60px;
                 margin-bottom: 27px;
             }
             &-btn {
@@ -52,6 +71,18 @@
                 font-weight: 400;
                 font-size: 20px;
                 margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1325px) {
+    .cooperation {
+        &__content {
+            &-form {
+                &-title {
+                    font-size: 40px;
+                }
             }
         }
     }

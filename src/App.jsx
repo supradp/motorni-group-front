@@ -6,7 +6,7 @@ import Header from "./components/header/Header.jsx";
 import { useLocation } from "react-router-dom";
 import Footer from "./components/footer/Footer.jsx";
 import ErrorModal from "./components/modals/errorModal/ErrorModal.jsx";
-import { useEffect } from "react";
+import BgIcon from "./assets/images/BG/bg-icon.svg"; //BgIcon
 function App() {
     const isSomeQueryPending = useSelector((state) =>
         Object.values(state.motorniAPI.queries).some((query) => query.status === "pending")
@@ -19,6 +19,7 @@ function App() {
 
     return (
         <div className="global-container">
+            <img src={BgIcon} alt="" className="main-bg-icon" />
             <div
                 className="content"
                 style={isMainPage ? { maxWidth: "none" } : { paddingTop: "74px", minHeight: "calc(100vh - 184px)" }}

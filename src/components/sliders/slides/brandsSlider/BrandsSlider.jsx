@@ -36,32 +36,45 @@ const BrandsSlider = ({ slides, style }) => {
 
     const { width } = useWindowDimensions();
 
-    const slidesPerView = width < 600 ? 2.5 : slides.length > 4 ? 5 : slides.length;
+    const slidesPerView = width < 800 ? 2.5 : slides.length > 5 ? 6 : slides.length;
 
     return (
         <div className="brands-slider">
             <div className="brands-slider-wrapper">
-                <Swiper
-                    ref={sliderRef}
-                    spaceBetween={0}
-                    slidesPerView={slidesPerView}
-                    // onSlideChange={(slide) => setActiveIndex(slide.realIndex)}
-                    loop={true}
-                    style={style ? style : { width: "900px", height: "450px" }}
-                >
-                    {slides.map((slide) => {
-                        return (
-                            <SwiperSlide key={slide.id}>
-                                <Link to={slide?.link} className="brand-slide">
+                {slides.length <= slidesPerView && width > 600 && (
+                    <div className="brands-slider__no-scroll-slides">
+                        {slides.map((slide) => {
+                            return (
+                                <Link to={slide?.link} className="brand-slide" target="_blank">
                                     <img src={slide?.image} alt="" className="brand-slide__img" />
                                 </Link>
-                            </SwiperSlide>
-                        );
-                    })}
-                </Swiper>
+                            );
+                        })}
+                    </div>
+                )}
+                {slides.length > slidesPerView && (
+                    <Swiper
+                        ref={sliderRef}
+                        spaceBetween={0}
+                        slidesPerView={slidesPerView}
+                        // onSlideChange={(slide) => setActiveIndex(slide.realIndex)}
+                        loop={true}
+                        style={style ? style : { width: "900px", height: "450px" }}
+                    >
+                        {slides.map((slide) => {
+                            return (
+                                <SwiperSlide key={slide.id}>
+                                    <Link to={slide?.link} target="_blank" className="brand-slide">
+                                        <img src={slide?.image} alt="" className="brand-slide__img" />
+                                    </Link>
+                                </SwiperSlide>
+                            );
+                        })}
+                    </Swiper>
+                )}
                 <div className="brands-slider__bar">
                     <>
-                        {slides.length > 6 && (
+                        {slides.length > slidesPerView && (
                             <>
                                 <div className="brands-slider__bar-btn btn-animation" onClick={handlePrev}>
                                     <GoArrowLeft size={"17px"} fill="#525252" />
