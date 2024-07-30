@@ -11,6 +11,7 @@ import SidebarList from "../../components/sidebarList/SidebarList";
 import { useGetPageQuery, useSendFormMutation } from "../../redux/services/motorniAPI";
 import routes from "../../variables/routes";
 import "./сooperation.scss";
+import { setErrorMassage } from "../../redux/slices/statusSlice";
 const list = [
     { id: "dealers", slug: "dealers", title: "Стати дилером" },
     { id: "vacancies", slug: "vacancies", title: "Стати співробітником" },
@@ -63,10 +64,6 @@ const Cooperation = () => {
                     body: formData,
                     headers: isVacancies ? {} : { "Content-Type": "application/json", Accept: "application/json" },
                 }).unwrap();
-                toast.success("Заявку відправлено");
-                setName("");
-                setVacancy("");
-                setPhone("");
             } catch (error) {
                 console.log(error);
             }
@@ -89,22 +86,28 @@ const Cooperation = () => {
                     body: FormData,
                     headers: { "Content-Type": "application/json", Accept: "application/json" },
                 }).unwrap();
-                toast.success("Заявку відправлено");
-                setName("");
-                setVacancy("");
-                setPhone("");
             } catch (error) {
                 console.log(error);
             }
         }
     };
 
+    useEffect(() => {
+        if (isSendFormSuccess) {
+            setName("");
+            setVacancy("");
+            setPhone("");
+            dispatch(setErrorMassage("Заявку відправлено"));
+        } else if (isError && error) {
+            console.log(error);
+        }
+    }, [isSendFormSuccess, isError]);
+
 
     useEffect(() => {
         naviagate(routes.COOPERATIONLINK + activeCategory);
     }, [activeCategory]);
 
-    console.log(error)
 
     return (
         <div className="content-wrapper">
