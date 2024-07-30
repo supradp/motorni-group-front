@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import "./сooperation.scss";
-import BreadCrumbs from "../../components/breadCrumbs/BreadCrumbs";
-import SidebarList from "../../components/sidebarList/SidebarList";
-import routes from "../../variables/routes";
-import FormInput from "../../components/formInput/FormInput";
-import FormButton from "../../components/buttons/formButton/FormButton";
-import { useGetPageQuery, useSendFormMutation } from "../../redux/services/motorniAPI";
-import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { setErrorMassage } from "../../redux/slices/statusSlice";
+import { useNavigate, useParams } from "react-router-dom";
 import BgIcon from "../../assets/images/BG/bg-icon.svg";
+import BreadCrumbs from "../../components/breadCrumbs/BreadCrumbs";
+import FormButton from "../../components/buttons/formButton/FormButton";
+import FormInput from "../../components/formInput/FormInput";
+import SidebarList from "../../components/sidebarList/SidebarList";
+import { useGetPageQuery, useSendFormMutation } from "../../redux/services/motorniAPI";
+import routes from "../../variables/routes";
+import "./сooperation.scss";
 const list = [
     { id: "dealers", slug: "dealers", title: "Стати дилером" },
     { id: "vacancies", slug: "vacancies", title: "Стати співробітником" },
@@ -36,13 +36,20 @@ const Cooperation = () => {
     const activeCategoryName = list.find((listItem) => listItem.slug === activeCategory)?.title || "";
     const isVacancies = activeCategory === "vacancies";
 
+    useEffect(() => {
+        setName("");
+        setVacancy("");
+        setPhone("");
+        setCv("");
+    }, [isVacancies])
+
     const [sendForm, { isSuccess: isSendFormSuccess, data: formData, isLoading: isSendFormLoading, isError, error }] =
         useSendFormMutation();
 
     const sendFormHandler = async (e) => {
         e.preventDefault();
         if (!name || !vacancy || !phone) {
-            dispatch(setErrorMassage("Заповність усі обов'язкові поля!"));
+            toast.error("Заповність усі обов'язкові поля!");
         } else {
             const formData = new FormData();
             formData.append("cv", e.target.file.files[0]);
@@ -56,6 +63,10 @@ const Cooperation = () => {
                     body: formData,
                     headers: isVacancies ? {} : { "Content-Type": "application/json", Accept: "application/json" },
                 }).unwrap();
+                toast.success("Заявку відправлено");
+                setName("");
+                setVacancy("");
+                setPhone("");
             } catch (error) {
                 console.log(error);
             }
@@ -64,13 +75,13 @@ const Cooperation = () => {
 
     const sendDealerFormHandler = async (e) => {
         e.preventDefault();
-        if (!name || !vacancy || !phone) {
-            dispatch(setErrorMassage("Заповність усі обов'язкові поля!"));
+        if (!name || !phone) {
+            toast.error("Заповність усі обов'язкові поля!");
         } else {
             const FormData = {
                 name: name,
                 phone: phone,
-                cooperation: vacancy,
+                // cooperation: vacancy,
             };
             try {
                 await sendForm({
@@ -78,26 +89,22 @@ const Cooperation = () => {
                     body: FormData,
                     headers: { "Content-Type": "application/json", Accept: "application/json" },
                 }).unwrap();
+                toast.success("Заявку відправлено");
+                setName("");
+                setVacancy("");
+                setPhone("");
             } catch (error) {
                 console.log(error);
             }
         }
     };
 
-    useEffect(() => {
-        if (isSendFormSuccess) {
-            setName("");
-            setVacancy("");
-            setPhone("");
-            dispatch(setErrorMassage("Заявку відправлено"));
-        } else if (isError && error) {
-            console.log(error);
-        }
-    }, [isSendFormSuccess, isError]);
 
     useEffect(() => {
         naviagate(routes.COOPERATIONLINK + activeCategory);
     }, [activeCategory]);
+
+    console.log(error)
 
     return (
         <div className="content-wrapper">
@@ -143,7 +150,8 @@ const Cooperation = () => {
                                         type={"file"}
                                         id={"file"}
                                     />
-                                    <label for="file">Натисність для завантаження резюме</label>
+                                    {isError && error?.data?.cv ? <label style={{ color: "red" }} for="file">Данний формат файлу не підтримується </label> : <label for="file">{'Натисність для завантаження резюме'}</label>}
+
                                 </>
                             )}
                         </div>

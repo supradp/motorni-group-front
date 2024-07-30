@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "./news.scss";
 
-import routes from "../../variables/routes";
 import BreadCrumbs from "../../components/breadCrumbs/BreadCrumbs";
 import SidebarList from "../../components/sidebarList/SidebarList";
+import routes from "../../variables/routes";
 
-import { Link, useNavigate, useParams } from "react-router-dom";
-import ContentSlider from "../../components/contentSlider/ContentSlider";
-import { useGetPageQuery } from "../../redux/services/motorniAPI";
-import { SwiperSlide } from "swiper/react";
-import UserImg from "../../assets/images/user.png";
-import BgIcon from "../../assets/images/BG/bg-icon.svg";
-import useWindowDimensions from "../../helpers/useWindowDimensions";
 import { Helmet } from "react-helmet";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { SwiperSlide } from "swiper/react";
+import BgIcon from "../../assets/images/BG/bg-icon.svg";
+import ContentSlider from "../../components/contentSlider/ContentSlider";
+import useWindowDimensions from "../../helpers/useWindowDimensions";
+import { useGetPageQuery } from "../../redux/services/motorniAPI";
 const list = [
     { id: "novini-kompaniyi", slug: "novini-kompaniyi", title: "Новини компанії" },
     { id: "nashi-cpivrobitniki", slug: "nashi-cpivrobitniki", title: "Нашi cпiвробiтники" },
@@ -60,13 +59,26 @@ const News = () => {
 
     const [activeCategory, setActiveCAtegory] = useState(id);
     const [activeCategoryid, setActiveCAtegoryId] = useState(1);
+    const [meta, setMeta] = useState({});
 
     const { data: news } = useGetPageQuery(`news?filters[]=id_news_categories=` + activeCategoryid);
     const { data: categories } = useGetPageQuery("news_categories");
 
-    const metaTitle = "Новини компанії | motorni-group";
+    // useEffect(() => {
+    //     if (categories) {
+
+    //     }
+    // }, [categories, activeCategoryid])
+
+    const metaTitle = categories?.data?.find((cat) => cat.slug === activeCategory)?.meta_title;
     const metaDesc =
-        'description" content="Будьте в курсі останніх новин та подій компанії motorni-group. Дізнайтеся про нові продукти, партнерства та досягнення в сфері сільгосптехніки, інструменту та техніки, електромобілів та вело-мототехніки.';
+        categories?.data?.find((cat) => cat.slug === activeCategory)?.meta_description;
+
+    useEffect(() => {
+        if (categories) {
+            naviagate(routes.NEWSLINK + activeCategory);
+        }
+    }, [activeCategory]);
 
     useEffect(() => {
         // naviagate(routes.NEWSLINK + activeCategory);
@@ -84,6 +96,8 @@ const News = () => {
     useEffect(() => {
         setActiveCAtegory(id);
     }, [id]);
+
+    console.log(metaTitle, metaDesc);
 
     // const height = activeCategoryid === 2 ? "450px" : "";
 
@@ -115,12 +129,12 @@ const News = () => {
                         <div className="news__content">
                             <div
                                 className="news__content-slider"
-                                // style={{ paddingTop: activeCategoryid === 2 ? "115px" : "115px" }}
+                            // style={{ paddingTop: activeCategoryid === 2 ? "115px" : "115px" }}
                             >
                                 <ContentSlider
                                     style={{ wigth: "max-content", height: "max-content" }}
                                     isActiveNav={news?.data.length > 1}
-                                    // isVertical={activeCategoryid === 2 && width > 1330 ? true : false}
+                                // isVertical={activeCategoryid === 2 && width > 1330 ? true : false}
                                 >
                                     {news?.data.map((slide) => {
                                         if (slide.type === "News") {
