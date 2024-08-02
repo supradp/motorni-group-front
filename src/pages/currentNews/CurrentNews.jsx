@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import "./currentNews.scss";
-import NewsSlideImg from "../../assets/images/slider/news-slide.png";
-import BreadCrumbs from "../../components/breadCrumbs/BreadCrumbs";
-import routes from "../../variables/routes";
-import { useGetPageQuery } from "../../redux/services/motorniAPI";
-import { useParams } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import moment from "moment";
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
+import BreadCrumbs from "../../components/breadCrumbs/BreadCrumbs";
+import { useGetPageQuery } from "../../redux/services/motorniAPI";
+import routes from "../../variables/routes";
+import "./currentNews.scss";
 
 const CurrentNews = () => {
     const [breadCrumbsLinks, setBreadCrumbsLinks] = useState([
@@ -30,6 +29,7 @@ const CurrentNews = () => {
                 <div className="content-wrapper">
                     <Helmet>
                         <title>{`${news?.meta_title ? news?.meta_title : "motorni"}`}</title>
+                        <meta name="description" content={`${news?.meta_description ? news?.meta_description : "motorni"}`} />
                     </Helmet>
                     <div className="current-news">
                         <BreadCrumbs links={breadCrumbsLinks} />
