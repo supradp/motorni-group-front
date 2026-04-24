@@ -1,58 +1,92 @@
-.modal {
+.preloader {
     position: fixed;
-    z-index: 35;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.75);
+    backdrop-filter: blur(6px);
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-}
+    gap: 40px;
 
-.modal__content {
-    margin: auto;
-    padding: 20px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    background-color: transparent;
-}
-
-.modal-text {
-    margin-left: 14px;
-    font-size: 24px;
-    color: white;
-}
-
-.loader {
-    width: 50px;
-    height: 50px;
-    border: 8px solid #ddd;
-    border-top: 8px solid #2196f3;
-    border-bottom: 8px solid #2196f3;
-    border-radius: 50%;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-}
-
-@-webkit-keyframes spin {
-    0% {
-        -webkit-transform: rotate(0deg);
+    &__inner {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    100% {
-        -webkit-transform: rotate(360deg);
+    &__ring {
+        position: absolute;
+        inset: 0;
+
+        &-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #009e45;
+            border-right-color: #009e45;
+            animation: preloader-spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+
+            &::after {
+                content: '';
+                position: absolute;
+                inset: 6px;
+                border-radius: 50%;
+                border: 2px solid rgba(255, 255, 255, 0.05);
+                border-bottom-color: #009e45;
+                animation: preloader-spin 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite reverse;
+            }
+        }
+    }
+
+    &__logo {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: preloader-pulse 1.5s ease-in-out infinite;
+
+        img {
+            width: 64px;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+    }
+
+    &__bar {
+        width: 160px;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 2px;
+        overflow: hidden;
+
+        &-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #009e45, #00d45d, #009e45);
+            background-size: 200% 100%;
+            border-radius: 2px;
+            animation: preloader-bar 1.2s ease-in-out infinite;
+        }
     }
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
+@keyframes preloader-spin {
+    to { transform: rotate(360deg); }
+}
 
-    100% {
-        transform: rotate(360deg);
-    }
+@keyframes preloader-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.75; transform: scale(0.93); }
+}
+
+@keyframes preloader-bar {
+    0%   { background-position: 200% 0; width: 30%; margin-left: 0; }
+    50%  { width: 70%; }
+    100% { background-position: -200% 0; width: 30%; margin-left: 130%; }
 }

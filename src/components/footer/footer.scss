@@ -5,9 +5,10 @@
     // right: 0;
 
     margin-top: auto;
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     width: 100%;
     z-index: 2;
+    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.1);
 
     .footer-content-wrapper {
         padding: 30px var(--offset);
@@ -30,10 +31,16 @@
             width: 46px;
             height: 46px;
             border-radius: 30px;
-            border: 2px solid var(--white);
+            border: 2px solid rgba(255,255,255,0.7);
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: var(--transition);
+            &:hover {
+                background: rgba(255,255,255,0.15);
+                border-color: var(--white);
+                transform: translateY(-2px);
+            }
         }
     }
 }

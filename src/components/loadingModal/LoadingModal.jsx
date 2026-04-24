@@ -1,16 +1,22 @@
 import React from 'react';
-import './loadingModal.scss'
+import WhiteLogo from '../../assets/images/icons/white-logo.svg';
+import './loadingModal.scss';
 
 const LoadingModal = () => {
     return (
-        <>
-            <div style={{ display: 'flex' }} className='modal'>
-                <div className='modal__content'>
-                    <div className='loader'></div>
-                    <div className='modal-text'>Loading...</div>
+        <div className='preloader'>
+            <div className='preloader__inner'>
+                <div className='preloader__ring'>
+                    <div className='preloader__ring-circle'></div>
+                </div>
+                <div className='preloader__logo'>
+                    <img src={WhiteLogo} alt='Motorni' />
                 </div>
             </div>
-        </>
+            <div className='preloader__bar'>
+                <div className='preloader__bar-fill'></div>
+            </div>
+        </div>
     );
 };
 

@@ -5,6 +5,7 @@ import BreadCrumbs from "../../components/breadCrumbs/BreadCrumbs";
 import SidebarList from "../../components/sidebarList/SidebarList";
 import routes from "../../variables/routes";
 
+import moment from "moment";
 import { Helmet } from "react-helmet";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { SwiperSlide } from "swiper/react";
@@ -23,6 +24,11 @@ export const Slide = ({ slideData }) => {
         <Link to={routes.CURRENTNEWSLINK + slideData?.slug} className="news-slide btn-animation">
             {slideData?.image.length > 0 && <img src={slideData?.image} alt="" className="news-slide__img" />}
             <div className="news-slide__title">{slideData?.title}</div>
+            {slideData?.date && (
+                <div className="news-slide__date">
+                    {moment(slideData.date).format("DD.MM.YYYY")}
+                </div>
+            )}
             <div className="news-slide__txt">
                 <div dangerouslySetInnerHTML={{ __html: slideData?.description }} />
             </div>
@@ -61,7 +67,7 @@ const News = () => {
     const [activeCategoryid, setActiveCAtegoryId] = useState(1);
     const [meta, setMeta] = useState({});
 
-    const { data: news } = useGetPageQuery(`news?filters[]=id_news_categories=` + activeCategoryid);
+    const { data: news } = useGetPageQuery(`news?filters[]=id_news_categories=` + activeCategoryid + `&sort=id&order=desc`);
     const { data: categories } = useGetPageQuery("news_categories");
 
     // useEffect(() => {

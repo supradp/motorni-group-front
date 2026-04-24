@@ -90,6 +90,7 @@
     &__green {
         background: var(--primary);
         position: fixed;
+        box-shadow: var(--shadow-md);
         .header__border {
             display: none;
         }
@@ -122,33 +123,41 @@
             font-weight: 400;
             font-size: 20px;
             color: var(--white);
-            &-green {
-                font-weight: 600;
-                font-size: 20px;
-                color: var(--primary);
+            transition: var(--transition);
+            &:hover {
+                opacity: 0.8;
             }
             &-white {
                 font-weight: 600;
                 font-size: 20px;
             }
-
             &-extra {
                 border: 2px solid var(--primary);
                 border-radius: 96px;
-                padding: 12px 16px;
+                padding: 12px 20px;
                 font-weight: 700;
                 font-size: 14px;
                 text-align: center;
                 color: var(--white);
+                transition: var(--transition);
+                &:hover {
+                    background: var(--primary);
+                    opacity: 1;
+                }
             }
             &-green {
                 border: 2px solid var(--white);
                 border-radius: 96px;
-                padding: 12px 16px;
+                padding: 12px 20px;
                 font-weight: 700;
                 font-size: 14px;
                 text-align: center;
                 color: var(--white);
+                transition: var(--transition);
+                &:hover {
+                    background: rgba(255,255,255,0.15);
+                    opacity: 1;
+                }
             }
         }
     }

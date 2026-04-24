@@ -2,13 +2,29 @@ body {
     //text colors
     --textGray: #525252;
     --textGray10: #888888;
-    --textBlack: #212121;
+    --textBlack: #1a1a1a;
     --link: #5669fe;
 
     //colors
-
     --primary: #009e45;
+    --primary-dark: #007a36;
+    --primary-light: #e8f7ee;
     --white: #ffffff;
+    --bg: #f8f9fa;
+    --border: #e5e7eb;
+
+    //shadows
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.07);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.11);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.13);
+
+    //radius
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+
+    //transition
+    --transition: all 0.25s ease;
 
     //offset
     --offset: 39px;

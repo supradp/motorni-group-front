@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const baseUrl =
-    !process.env.NODE_ENV || process.env.NODE_ENV === "development" ? `https://motorni-group.com.ua/` : `/`;
+const envBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
+export const baseUrl = envBaseUrl || `https://motorni-group.com.ua/`;
 
 // export const baseUrl =
 //     !process.env.NODE_ENV || process.env.NODE_ENV === "development"

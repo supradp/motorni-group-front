@@ -16,23 +16,35 @@
             object-fit: contain;
             object-position: top;
         }
-        &-text {
-            max-height: 411px;
-            overflow: scroll;
-            // overflow-y: hidden;
-            overflow-x: hidden;
-            text-align: justify;
-            ul {
-                margin-top: 15px;
-            }
-            p {
-                margin-bottom: 15px;
-            }
-            &::-webkit-scrollbar {
-                display: none;
-            }
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
+            &-text {
+                max-height: 411px;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                text-align: justify;
+                padding-right: 10px;
+                ul {
+                    margin-top: 15px;
+                }
+                p {
+                    margin-bottom: 15px;
+                }
+                scrollbar-width: auto;
+                scrollbar-color: var(--primary) var(--primary-light);
+                &::-webkit-scrollbar {
+                    width: 6px;
+                }
+                &::-webkit-scrollbar-track {
+                    background: var(--primary-light);
+                    border-radius: 4px;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background: var(--primary);
+                    border-radius: 4px;
+                    min-height: 40px;
+                    &:hover {
+                        background: var(--primary-dark);
+                    }
+                }
 
             color: var(--textBlack);
 
