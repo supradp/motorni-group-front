@@ -3,27 +3,36 @@
     z-index: 2;
     &__item {
         font-weight: 400;
-        font-size: 18px;
+        font-size: 20px;
         color: var(--textGray);
         transition: var(--transition);
         cursor: pointer;
+        position: relative;
+        padding: 0;
+        margin-left: 0;
         &:hover {
             color: var(--primary);
         }
         &-active {
             color: var(--primary);
-            font-weight: 600;
+            padding-left: 16px;
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 50%;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: var(--primary);
+                transform: translateY(-50%);
+                box-shadow: 0 0 0 4px var(--primary-light);
+            }
         }
         &-wrapper {
             display: flex;
             align-items: center;
-            margin-bottom: 14px;
-            gap: 10px;
-            padding: 6px 0;
-            border-bottom: 1px solid var(--border);
-            &:last-child {
-                border-bottom: none;
-            }
+            margin-bottom: 10px;
         }
     }
 }
