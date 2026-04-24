@@ -29,7 +29,9 @@ function App() {
                 <ErrorModal />
                 <Header isMain={isMainPage} />
                 {isSomeQueryPending ? <LoadingModal /> : null}
-                <Rotes />
+                <div key={'/' + location.pathname.split('/')[1]} className="page-transition">
+                    <Rotes />
+                </div>
             </div>
             {!isMainPage && <Footer />}
         </div>

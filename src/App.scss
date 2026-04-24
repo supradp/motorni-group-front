@@ -135,6 +135,24 @@ body {
     height: 100%;
 }
 
+.page-transition {
+    flex: 1;
+    animation: page-enter 0.45s ease both;
+}
+
+@keyframes page-enter {
+    0% {
+        opacity: 0;
+        transform: translateY(14px);
+        filter: blur(3px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
 .btn-animation {
     cursor: pointer;
     transition: var(--transition);
