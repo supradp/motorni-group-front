@@ -12,7 +12,7 @@ const Header = ({ isMain }) => {
     const buyBtnClass = isMain
         ? "header__nav-btn header__nav-btn-green btn-animation"
         : "header__nav-btn header__nav-btn-white btn-animation";
-    const vacClass = isMain ? "header__nav-btn-extra btn-animation" : "header__nav-btn-green btn-animation";
+    const vacClass = "header__nav-btn-vacancy btn-animation";
 
     const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
 
